@@ -38,14 +38,14 @@ public class GenericsTest {
     }
 
     @Test
-    public void testGenericMethod(){
-        assertEquals("Generic method failed", generics.genericMethod("string"),"string");
-        assertEquals("Generic method failed", generics.genericMethod(generics),generics);
-        assertEquals("Generic method failed", generics.genericMethod(100),Integer.valueOf(100));
+    public void testGenericMethod() {
+        assertEquals("Generic method failed", generics.genericMethod("string"), "string");
+        assertEquals("Generic method failed", generics.genericMethod(generics), generics);
+        assertEquals("Generic method failed", generics.genericMethod(100), Integer.valueOf(100));
     }
 
     @Test
-    public void testGenericMethodUseGenerics(){
+    public void testGenericMethodUseGenerics() {
         List<String> list = parseGenericsClass();
         assertTrue(" genericMethod should use generics",
                 getLineWithString(list, "genericMethod").contains("<"));
@@ -54,18 +54,18 @@ public class GenericsTest {
     }
 
     @Test
-    public void testGenericClone(){
+    public void testGenericClone() {
         List<Number> number = new ArrayList<>();
         List<Integer> integer = Arrays.asList(1, 2);
         try {
-            generics.cloneMethod(number,integer);
+            generics.cloneMethod(number, integer);
         } catch (Exception ex) {
             throw new Error("Clone method failed", ex);
         }
     }
 
     @Test
-    public void testGenericCloneHasIsNotRaw(){
+    public void testGenericCloneHasIsNotRaw() {
         List<String> list = parseGenericsClass();
         assertTrue("In line " + (list.indexOf(getLineWithString(list, "clone")) + 1) + ", List shouldn't be raw",
                 getLineWithString(list, "clone").contains("List<? super T>"));
